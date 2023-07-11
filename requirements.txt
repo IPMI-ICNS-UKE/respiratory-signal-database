@@ -1,0 +1,13 @@
+# dev specific packages
+setuptools~=65.5.0
+pre-commit~=2.20.0
+black~=22.10.0
+
+# pick latest version as default, use == or ~= to specify version
+numpy
+scipy
+matplotlib
+pandas==1.5.3
+peewee
+Cython
+tqdm

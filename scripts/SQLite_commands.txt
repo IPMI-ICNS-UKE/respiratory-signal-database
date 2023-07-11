@@ -1,0 +1,9 @@
+# JOIN all tables in SQLite
+SELECT *
+FROM signal
+
+INNER JOIN researchnumber AS rid ON rid.id = signal.research_number_id
+INNER JOIN deeplearningdataset as dataset ON dataset.signal_id = signal.id
+INNER JOIN respiratorystats AS stats ON stats.id = signal.id
+
+# Feel free to add new commands
