@@ -66,7 +66,7 @@ class RpmDatabaseClient(LoggerMixin):
 
     @staticmethod
     def _check_function_inputs(
-        research_number: int, modality: str | None, fraction: int | None
+            research_number: int, modality: str | None, fraction: int | None
     ):
         possible_modalities = ["4DCT", "CBCT", "LINAC"]
         if modality and modality not in possible_modalities:
@@ -78,17 +78,17 @@ class RpmDatabaseClient(LoggerMixin):
 
         research_number_str = str(research_number)
         if not any(
-            [research_number_str.startswith("57"), len(research_number_str) == 7]
+                [research_number_str.startswith("57"), len(research_number_str) == 7]
         ):
             raise ValueError(f"{research_number} has to start with 57 and has 7 digits")
 
     @staticmethod
     def get_specific_signal(
-        research_number: int,
-        modality: str | None,
-        fraction: int | None,
-        origin: str = "UKE",
-        return_only_query: bool = False,
+            research_number: int,
+            modality: str | None,
+            fraction: int | None,
+            origin: str = "UKE",
+            return_only_query: bool = False,
     ) -> tuple[MaybeSequence[pd.DataFrame], MaybeSequence[sql.Signal]] | MaybeSequence[
         sql.Signal
     ]:
@@ -130,10 +130,10 @@ class RpmDatabaseClient(LoggerMixin):
 
     @staticmethod
     def preprocess_signal(
-        df_signal: pd.DataFrame | bytes,
-        only_beam_on: bool = True,
-        sampling_rate: int = 25,
-        remove_offset: bool = True,
+            df_signal: pd.DataFrame | bytes,
+            only_beam_on: bool = True,
+            sampling_rate: int = 25,
+            remove_offset: bool = True,
     ) -> pd.DataFrame:
         """Performs preprocessing by.
 
@@ -157,9 +157,9 @@ class RpmDatabaseClient(LoggerMixin):
                 f"Dataframe does not contain all mandatory columns; {df_signal.columns}"
             )
         if (
-            any(df_signal.amplitude.isna())
-            or any(df_signal.time.isna())
-            or any(df_signal.beam_on.isna())
+                any(df_signal.amplitude.isna())
+                or any(df_signal.time.isna())
+                or any(df_signal.beam_on.isna())
         ):
             raise ValueError("Contain invalid data")
         if only_beam_on:
@@ -184,13 +184,13 @@ class RpmDatabaseClient(LoggerMixin):
             minima_idx = find_peaks(x=signal_subset.values)
             minima = df_signal.amplitude[minima_idx].values
             df_signal.loc[:, "amplitude"] = (
-                df_signal.amplitude - minima[:number_minima].mean()
+                    df_signal.amplitude - minima[:number_minima].mean()
             )
         return df_signal
 
     @staticmethod
     def get_signals_of_dl_dataset(
-        dl_dataset: str, project: str
+            dl_dataset: str, project: str
     ) -> peewee.ModelSelect:
         if dl_dataset not in ["train", "val", "test"]:
             raise ValueError(f"Invalid dataset: {dl_dataset}")

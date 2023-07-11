@@ -6,7 +6,6 @@ from resp_db.logger import init_fancy_logging
 
 logger = logging.getLogger(__name__)
 
-
 if __name__ == "__main__":
     init_fancy_logging()
     logger = logging.getLogger(__name__)
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     # get all signals of train(/val/test) set.
     with client:
         query = client.get_signals_of_dl_dataset(
-            dl_dataset="train", # "val", "test"
+            dl_dataset="train",  # "val", "test"
             project="short-term-prediction"
         )
     query = list(query)

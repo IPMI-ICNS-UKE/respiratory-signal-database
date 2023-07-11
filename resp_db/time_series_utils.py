@@ -10,9 +10,9 @@ from resp_db.common_types import Number
 
 
 def resample_time_series(
-    signal_time_secs: np.ndarray,
-    signal_amplitude: np.ndarray,
-    target_samples_per_second: Number,
+        signal_time_secs: np.ndarray,
+        signal_amplitude: np.ndarray,
+        target_samples_per_second: Number,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Resamples a given time series to the desired samples per second (target)
     by performing a simple 1D interpolation.
@@ -45,9 +45,9 @@ def resample_time_series(
 
 
 def calc_derivative(
-    signal: np.ndarray,
-    samples_per_second: Number,
-    smoothing_kernel_size: int | None = None,
+        signal: np.ndarray,
+        samples_per_second: Number,
+        smoothing_kernel_size: int | None = None,
 ) -> np.ndarray:
     """Calculates the derivative of a given time series signal. If a kernel is
     given, derivative is smoothed.
@@ -104,8 +104,8 @@ def find_peaks(x: np.ndarray, scale: int = None, debug: bool = False):
     # create LSM matix
     LSM = np.ones((L, N), dtype=bool)
     for k in np.arange(1, L + 1):
-        LSM[k - 1, 0 : N - k] &= x[0 : N - k] > x[k:N]  # compare to right neighbours
-        LSM[k - 1, k:N] &= x[k:N] > x[0 : N - k]  # compare to left neighbours
+        LSM[k - 1, 0: N - k] &= x[0: N - k] > x[k:N]  # compare to right neighbours
+        LSM[k - 1, k:N] &= x[k:N] > x[0: N - k]  # compare to left neighbours
 
     # Find scale with most maxima
     G = LSM.sum(axis=1)
@@ -146,7 +146,7 @@ class RespiratoryStatistics:
 
 
 def calculate_respiratory_statistics(
-    amplitudes: np.ndarray, sampling_rate: float = 1.0
+        amplitudes: np.ndarray, sampling_rate: float = 1.0
 ) -> RespiratoryStatistics:
     cycles = split_into_cycles(amplitudes)
     cycle_lengths = [len(c) / sampling_rate for c in cycles]
@@ -163,10 +163,10 @@ def calculate_respiratory_statistics(
 
 
 def fourier_smoothing(
-    time_series: np.ndarray,
-    freq_threshold_hz: float,
-    sampling_rate: int,
-    return_spectrum: bool,
+        time_series: np.ndarray,
+        freq_threshold_hz: float,
+        sampling_rate: int,
+        return_spectrum: bool,
 ) -> np.ndarray | tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """De-noises a signal using Fourier smoothing.
 
@@ -202,7 +202,7 @@ def fourier_smoothing(
 
 
 def add_white_noise_to_signal(
-    target_snr_db: int, signal: np.ndarray, **kwargs
+        target_snr_db: int, signal: np.ndarray, **kwargs
 ) -> np.ndarray:
     """
     :param target_snr_db: signal-to-noise-ratio (SNR) in dB
@@ -214,7 +214,7 @@ def add_white_noise_to_signal(
     """
     seed = kwargs.get("seed", None)
     # Calculate signal power and convert to dB
-    signal_power = signal**2
+    signal_power = signal ** 2
     sig_avg_power = np.mean(signal_power)
     sig_avg_db = 10 * np.log10(sig_avg_power)
     # Calculate noise according to SNR_dB = P_signal_dB - P_noise_dB

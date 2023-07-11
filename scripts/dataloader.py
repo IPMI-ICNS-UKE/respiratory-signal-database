@@ -154,7 +154,6 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     database_root = Path(".../open_access_rpm_signals_master.db")  # change to path of downloaded database
-    database_root = Path("/home/lwimmert/Downloads/open_access_rpm_signals_master.db")
     batch_size = 128
     train_dataset = RpmSignals(
         db_root=database_root,
