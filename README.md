@@ -17,7 +17,7 @@ Download sql database from our owncloud server (https://icns-nas1.uke.uni-hambur
 
 Clone this repository to your local machine:
 ```bash
-git clone https://github.com/IPMI-ICNS-UKE/RPM_DB.git
+git clone https://github.com/IPMI-ICNS-UKE/respiratory-signal-database.git
 ```
 
 cd into the repo and install necessary dependencies and the package itself:
