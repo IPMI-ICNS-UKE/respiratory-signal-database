@@ -11,7 +11,9 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     logging.getLogger("resp_db").setLevel(logging.DEBUG)
-    database_root = Path(".../open_access_rpm_signals_master.db")  # change to path of downloaded database
+    database_root = Path(
+        ".../open_access_rpm_signals_master.db"
+    )  # change to path of downloaded database
     client = RpmDatabaseClient(db_filepath=database_root)
 
     # get one specific signal and preprocess
@@ -29,8 +31,7 @@ if __name__ == "__main__":
     # get all signals of train(/val/test) set.
     with client:
         query = client.get_signals_of_dl_dataset(
-            dl_dataset="train",  # "val", "test"
-            project="short-term-prediction"
+            dl_dataset="train", project="short-term-prediction"  # "val", "test"
         )
     query = list(query)
     # preprocess first signal of train set

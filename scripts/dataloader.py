@@ -1,6 +1,4 @@
-"""
-Please scroll down to if __name__ == "__main__":
-"""
+"""Please scroll down to if __name__ == "__main__":"""
 
 from __future__ import annotations
 
@@ -9,9 +7,9 @@ from pathlib import Path
 from random import randrange
 
 import matplotlib.pyplot as plt
-from torch import Tensor
-import torch
 import numpy as np
+import torch
+from torch import Tensor
 from torch.utils.data import DataLoader, Dataset
 
 from resp_db.client import RpmDatabaseClient
@@ -28,20 +26,21 @@ class RpmSignals(Dataset, LoggerMixin):
     is preprocessed on the fly (i.e. in the __getitem__ function). Note
     that, signals have varying signal length, which complicates batch
     learning. Either use a batch size of one or crop signals to the same
-    length (see length_signal_snippet_s parameter). Further, depending on your purposes, you might want to
-    smooth or add noise to the signals as well. Check out our suggest
-    functions in the __getitem__ function below.
+    length (see length_signal_snippet_s parameter). Further, depending
+    on your purposes, you might want to smooth or add noise to the
+    signals as well. Check out our suggest functions in the __getitem__
+    function below.
     """
 
     def __init__(
-            self,
-            db_root: PathLike,
-            mode: str = "train",
-            fourier_smooting_hz: int | None = 1,
-            white_noise_db: int | None = 30,
-            length_signal_snippet_s: int | None = None,
-            min_length_s: int = 59,
-            sampling_rate_hz: int = 25,
+        self,
+        db_root: PathLike,
+        mode: str = "train",
+        fourier_smooting_hz: int | None = 1,
+        white_noise_db: int | None = 30,
+        length_signal_snippet_s: int | None = None,
+        min_length_s: int = 59,
+        sampling_rate_hz: int = 25,
     ):
         super().__init__()
         if mode not in ["train", "val", "test"]:
@@ -125,14 +124,18 @@ class RpmSignals(Dataset, LoggerMixin):
             f"White noise of  {self.white_noise_db} dB was added to {name}"
         )
 
-        return name, torch.from_numpy(df_signal.time.values.astype(np.float32)), torch.from_numpy(
-            time_series_smooth.astype(np.float32)), torch.from_numpy(time_series_noisy.astype(np.float32))
+        return (
+            name,
+            torch.from_numpy(df_signal.time.values.astype(np.float32)),
+            torch.from_numpy(time_series_smooth.astype(np.float32)),
+            torch.from_numpy(time_series_noisy.astype(np.float32)),
+        )
 
     @staticmethod
     def select_random_subset(
-            time_series_len: int,
-            signal_length_s: int,
-            samples_per_second: int,
+        time_series_len: int,
+        signal_length_s: int,
+        samples_per_second: int,
     ) -> tuple[int, int]:
         num_points = samples_per_second * signal_length_s
         if time_series_len < num_points:
@@ -153,7 +156,9 @@ if __name__ == "__main__":
     logging.getLogger("resp_db").setLevel(logging.DEBUG)
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    database_root = Path(".../open_access_rpm_signals_master.db")  # change to path of downloaded database
+    database_root = Path(
+        ".../open_access_rpm_signals_master.db"
+    )  # change to path of downloaded database
     batch_size = 128
     train_dataset = RpmSignals(
         db_root=database_root,
