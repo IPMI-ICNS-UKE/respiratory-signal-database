@@ -4,7 +4,7 @@ We hope that this data will be widely used for respiratory motion prediction as 
 To this end, we provide data splitting (train, val and test set), preprocessing functionality and a pytorch dataset/loader template, which may be helpful in your machine or deep learning project.
 
 We advise to use https://sqlitebrowser.org/ as additional database browsing tool.
-Currently, only python is supported. However, we hope that we can provide a Rest-API in the near future (approx. September 2023) for non-python user.
+Currently, only python is supported. However, we hope that we can provide a Rest-API in the near future (approx. December 2023) for non-python user.
 If you experience any troubles, feel free to open an issue.
 
 
@@ -13,7 +13,10 @@ Author: Lukas Wimmert ([l.wimmert@uke.de](mailto:author_email))
 
 
 ## Installation
-Download sql database from our owncloud server (https://icns-nas1.uke.uni-hamburg.de/owncloud10/index.php/s/O1jBYsXEqYIXiwm)
+Download sql database from our owncloud server:
+https://icns-nas1.uke.uni-hamburg.de/owncloud10/index.php/s/kOquIgYP37OsRe6.
+
+
 
 Clone this repository to your local machine:
 ```bash
@@ -83,22 +86,36 @@ Have a look at our pytorch template at "scripts/dataloader.py" for machine/deep 
 ## Further information
 ### respiratory signal acquisition details
 All respiratory signals were recorded during radiotherapy treatment (i.e. 4D CT, 4D CBCT and dose delivery) of patients with thoracic lesions between February 2013 and May 2022 at the clinic of _Radiotherapy and Radiation Oncology_ of the _University Medical Center Hamburg-Eppendorf_.
-Data acquisition was performed using the _Varian RPM System_, i.e. monitoring an external marker block placed on the patient's chest wall with an infrared camera system (uni-variate time series).
-All patients did not receive any visual guidance or coaching and, therefore, can be considered as free-breathing patients. 
-![img_2.png](img_2.png)
+Data acquisition was performed using the _Varian RPM System_, i.e. monitoring an external marker block placed on the patient's chest wall with an infrared camera system (uni-variate time series). Check out our [acquisition images](acquisition_setup_images).
+All patients did not receive any visual guidance or coaching and, therefore, can be considered as free-breathing patients.
+
+
+<img src="acquisition_setup_images/example_signal.png" alt="drawing" style="width:600px;"/>  <img src="acquisition_setup_images/acquisition_setup.png" alt="drawing" style="width:390px;"/>
 
 
 
-### data(set) overview
+### data overview
+
+|     modality  | # signals | # patients | mean signal length (s) | 
+|:-------------:|-----------|------------|------------------------|
+|     4DCT      | 481       | 419        | 98.1                   |              
+|    4D CBCT    | 251       | 52         | 59.6                   |              
+| dose delivery | 1778      | 357        | 145.6                  |             
+|      sum      | 2510      |            | 129.3                  |   
+
+
+### data splitting
 Data splitting was performed on patient level. Thus, all signals of one patient belong to one set.
 
-| Signal overview |   modality    | # signals | # patients | mean signal length (s) | Data splitting  | set        | data  | # signals |
-|:---------------:|:-------------:|-----------|------------|------------------------|-----------------|------------|-------|-----------|
-|                 |     4DCT      | 481       | 419        | 98.1                   |                 | training   | 50 %  | 1265      |
-|                 |    4D CBCT    | 251       | 52         | 59.6                   |                 | validation | 20 %  | 516       |
-|                 | dose delivery | 1778      | 357        | 145.6                  |                 | testing    | 30 %  | 726       |
-|                 |      sum      | 2510      |            | 129.3                  |                 |            |       |           |
 
+| set        | proportion of data    | # signals | # patients |
+|------------|-----------------------|-----------|------------|
+| training   | 50 %                  | 1262      | 215        |
+| validation | 20 %                  | 514       | 84         |
+| testing    | 30 %                  | 726       | 117        |
+| total      | 100 %                 | 2502      | 416        |
+
+Note that, eight signals (corresponding to three patients) were retrospectively classified as corrupted and, therefore, they were removed from the database. 
 
 Lastly, open access of retrospectively collected and anonymized respiratory signals was approved by the local ethics board and the need to obtain written informed consent was waived [2023-300334-WF].
 

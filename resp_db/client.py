@@ -29,7 +29,7 @@ class RpmDatabaseClient(LoggerMixin):
 
     def __enter__(self):
         self.logger.debug(f"{self} successfully connected!")
-        sql.database.connect()
+        sql.database.connect(reuse_if_open=True)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
