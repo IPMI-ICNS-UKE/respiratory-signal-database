@@ -13,8 +13,8 @@ Author: Lukas Wimmert ([l.wimmert@uke.de](mailto:author_email))
 
 
 ## Installation
-Download sql database from our owncloud server:
-https://icns-nas1.uke.uni-hamburg.de/owncloud10/index.php/s/kOquIgYP37OsRe6.
+Download sql database from our nextcloud server:
+https://icns-nas2.uke.uni-hamburg.de/drive/d/s/wFCsYhokwsJ9hLp9CHqBoHidu91yXfSk/lvQnG6BiEbfM2OqIOEXhaonW4vilyWKK-07sgZW6pCws.
 
 
 
