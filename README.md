@@ -90,7 +90,7 @@ Data acquisition was performed using the _Varian RPM System_, i.e. monitoring an
 All patients did not receive any visual guidance or coaching and, therefore, can be considered as free-breathing patients.
 
 
-<img src="acquisition_setup_images/example_signal.png" alt="drawing" style="width:600px;"/>  <img src="acquisition_setup_images/acquisition_setup.png" alt="drawing" style="width:390px;"/>
+<img src="acquisition_setup_images/example_signal.png" alt="drawing" style="width:600px;"/>  
 
 
 
