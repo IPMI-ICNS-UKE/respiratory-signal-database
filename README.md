@@ -8,13 +8,14 @@ Currently, only python is supported. However, we hope that we can provide a Rest
 If you experience any troubles, feel free to open an issue.
 
 
-Author: Lukas Wimmert ([l.wimmert@uke.de](mailto:author_email))
+Author: Lukas Wimmert 
+
+Contact: [University Medical Center Hamburg Eppendorf](https://www.uke.de/english/departments-institutes/institutes/applied-medical-informatics/team/index.html)
 
 
 
 ## Installation
-Download sql database from our nextcloud server:
-https://icns-nas2.uke.uni-hamburg.de/drive/d/s/wFCsYhokwsJ9hLp9CHqBoHidu91yXfSk/lvQnG6BiEbfM2OqIOEXhaonW4vilyWKK-07sgZW6pCws.
+Download sql database from [here](https://www.fdr.uni-hamburg.de/record/17691) (file: open_access_rpm_signals_master.db).
 
 
 
