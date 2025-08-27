@@ -29,7 +29,7 @@ cd into the repo and install necessary dependencies and the package itself:
 pip install -r requirements.txt
 pip install -e .
 ```
-Tested with Python 3.9.11.
+Tested with Python 3.9.15.
 
 ## Usage
 Always start by connecting to the database:
